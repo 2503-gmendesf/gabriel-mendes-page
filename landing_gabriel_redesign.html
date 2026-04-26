@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Mendes - Engenheiro de Sistemas | Otimização e Indústria 4.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --yellow: #FFD700;
+            --dark-gray: #2d2d2d;
+            --medium-gray: #666666;
+            --light-gray: #f5f5f5;
+            --accent-yellow: #FFC107;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* NAVEGAÇÃO */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--black);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 214, 0, 0.2);
+        }
+
+        nav .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: -0.5px;
+        }
+
+        nav .logo span {
+            color: var(--yellow);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            color: var(--white);
+            padding: 12rem 2rem 8rem;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 214, 0, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .text-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero .text-content .highlight {
+            color: var(--yellow);
+        }
+
+        .hero .title-subtitle {
+            font-size: 1.5rem;
+            color: var(--light-gray);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 214, 0, 0.15);
+            color: var(--yellow);
+            padding: 0.6rem 1.3rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid var(--yellow);
+        }
+
+        .hero-photo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-frame {
+            width: 350px;
+            height: 450px;
+            background: var(--light-gray);
+            border: 3px solid var(--yellow);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 214, 0, 0.3);
+            position: relative;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-frame::before {
+            content: '📷';
+            font-size: 5rem;
+            opacity: 0.3;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #eeeeee 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .cta-button.primary {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 214, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1.5rem 5rem;
+            }
+            .hero .hero-content {
+                grid-template-columns: 1fr;
+            }
+            .hero .text-content h1 {
+                font-size: 2.5rem;
+            }
+            .photo-frame {
+                width: 280px;
+                height: 360px;
+            }
+        }
+
+        /* SEÇÃO SOBRE */
+        .about {
+            padding: 7rem 2rem;
+            background: var(--white);
+        }
+
+        .about .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--black);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .about p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            line-height: 1.9;
+        }
+
+        .credentials-box {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 15px;
+            border-left: 6px solid var(--yellow);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .credentials-box h3 {
+            color: var(--black);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .credentials-box ul {
+            list-style: none;
+        }
+
+        .credentials-box li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: var(--medium-gray);
+            font-weight: 500;
+        }
+
+        .credentials-box li:before {
+            content: "→";
+            color: var(--yellow);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about .grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* PESQUISA */
+        .research {
+            padding: 7rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .research h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--black);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .research h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .research-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .research-card.featured {
+            border-top: 4px solid var(--yellow);
+        }
+
+        .research-card:not(.featured) {
+            border-top: 4px solid var(--medium-gray);
+        }
+
+        .research-card .badge-date {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .research-card h3 {
+            color: var(--black);
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .research-card p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .research-card .meta {
+            font-size: 0.9rem;
+            color: #999;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* EXPERTISE */
+        .expertise {
+            padding: 7rem 2rem;
+            background: var(--white);
+        }
+
+        .expertise h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--black);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .expertise h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .expertise-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .expertise-card:hover {
+            background: var(--white);
+            border-color: var(--yellow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-card h3 {
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .expertise-card p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .tag {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* EXPERIÊNCIA */
+        .experience {
+            padding: 7rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .experience h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--black);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .experience h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--medium-gray);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            transform: translateX(8px);
+        }
+
+        .timeline-item.featured {
+            border-left-color: var(--yellow);
+            background: linear-gradient(135deg, var(--white) 0%, rgba(255, 214, 0, 0.05) 100%);
+        }
+
+        .timeline-item h3 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .timeline-item .company {
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .timeline-item .date {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+        }
+
+        /* RECONHECIMENTOS */
+        .awards {
+            padding: 7rem 2rem;
+            background: var(--white);
+        }
+
+        .awards h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--black);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .awards h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .award-item {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--light-gray);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .award-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            background: var(--white);
+        }
+
+        .award-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .award-item h4 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .award-item p {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* IDIOMAS */
+        .languages {
+            padding: 7rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .languages h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--black);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .languages h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .language-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .language-card:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .language-card h3 {
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .language-level {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .language-card p {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-section p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 50px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-gray);
+            border-radius: 50%;
+            color: var(--yellow);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+        }
+
+        .social-links a:hover {
+            background: var(--yellow);
+            color: var(--black);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 214, 0, 0.2);
+            padding-top: 2rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGAÇÃO -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">⚙️ <span>Gabriel</span></div>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#pesquisa">Pesquisa</a></li>
+                <li><a href="#experiencia">Experiência</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <div class="text-content">
+                    <h1>Gabriel <span class="highlight">Mendes</span></h1>
+                    <div class="title-subtitle">
+                        Engenheiro de Sistemas | Especialista em Otimização & Indústria 4.0
+                    </div>
+                    <p style="color: var(--light-gray); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        Bacharelado em Engenharia de Sistemas pela UFMG com pesquisa focada em manutenção preditiva, otimização multiobjetivo e modelagem de processos complexos.
+                    </p>
+                    <div class="hero-badges">
+                        <div class="badge">📊 Pesquisa Acadêmica</div>
+                        <div class="badge">🎯 Otimização</div>
+                        <div class="badge">🏭 Indústria 4.0</div>
+                        <div class="badge">📈 Modelagem</div>
+                    </div>
+                </div>
+
+                <div class="hero-photo">
+                    <div class="photo-frame">
+                        <!-- INSTRUÇÕES: Substitua "caminho-da-foto.jpg" pela sua foto -->
+                        <!-- <img src="caminho-da-foto.jpg" alt="Gabriel Mendes"> -->
+                        <div class="photo-placeholder">
+                            <span>Adicione sua foto aqui</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <h2>Sobre Mim</h2>
+                    <p>
+                        Sou Gabriel, engenheiro de sistemas apaixonado por resolver problemas complexos através de abordagens científicas e orientadas por dados. 
+                        Minha trajetória é marcada por excelência acadêmica, pesquisa inovadora e liderança comunitária.
+                    </p>
+                    <p>
+                        Especializado em <strong>otimização de sistemas complexos</strong> e <strong>indústria 4.0</strong>, tenho experiência prática em 
+                        modelagem matemática, simulação de processos industriais e implementação de soluções que aumentam eficiência operacional.
+                    </p>
+                    <p>
+                        Realizei intercâmbio acadêmico na Universidade do Porto em Portugal, onde cursei disciplinas de mestrado em Engenharia de Informática. 
+                        Sou membro ativo da INCOSE Brasil e fundador do canal educacional "Quadrumanos" sobre Engenharia de Sistemas.
+                    </p>
+                </div>
+                <div>
+                    <div class="credentials-box">
+                        <h3>🎓 Credenciais</h3>
+                        <ul>
+                            <li><strong>Bacharelado em Engenharia de Sistemas</strong> - UFMG (2025)</li>
+                            <li>Medalha de Prata Oriane Magela Neto</li>
+                            <li>NSG: 83.9 (Muito Bom)</li>
+                            <li>Intercâmbio Mestrado - FEUP Portugal</li>
+                            <li>Publicação IEEE - Best Paper</li>
+                            <li>Membro INCOSE Brasil</li>
+                            <li>Pesquisador em Otimização Indústria 4.0</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PESQUISA -->
+    <section class="research" id="pesquisa">
+        <div class="container">
+            <h2>Pesquisa & Publicações</h2>
+            <div class="research-grid">
+                <div class="research-card featured">
+                    <div class="badge-date">02/2024 - 07/2025</div>
+                    <h3>Otimização da Gestão da Manutenção Seletiva na Indústria 4.0</h3>
+                    <p>
+                        Trabalho de conclusão de curso em colaboração com Prof. Dr. Michel Bessani. 
+                        Desenvolvimento de metodologias avançadas para otimização de manutenção em ambientes de indústria 4.0.
+                    </p>
+                    <div class="meta">
+                        <span>📌 UFMG</span>
+                        <span>👨‍🎓 TCC</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="badge-date">09/2023 - 08/2024</div>
+                    <h3>Abordagem Multiobjetivo para Otimização de Manutenção</h3>
+                    <p>
+                        Iniciação científica com bolsa PIBIC CNPq. Pesquisa focada em otimização multiobjetivo de múltiplos componentes 
+                        no contexto da indústria 4.0.
+                    </p>
+                    <div class="meta">
+                        <span>🔬 PIBIC CNPq</span>
+                        <span>🏆 Pesquisa</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="badge-date">04/2024</div>
+                    <h3>IEEE International Systems Conference 2024</h3>
+                    <p>
+                        Apresentação de pesquisa sobre otimização de manutenção multicomponentes. 
+                        Reconhecimento como Best Paper - Honorable Mention na conferência internacional.
+                    </p>
+                    <div class="meta">
+                        <span>🎤 Apresentação</span>
+                        <span>🏅 Best Paper</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="expertise">
+        <div class="container">
+            <h2>Áreas de Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h3>🔧 Indústria 4.0</h3>
+                    <p>
+                        Integração de tecnologias digitais em processos industriais. 
+                        Implementação de IoT, Big Data e análise em tempo real.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">IoT</span>
+                        <span class="tag">Automação</span>
+                        <span class="tag">Big Data</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <h3>⚡ Otimização Multiobjetivo</h3>
+                    <p>
+                        Desenvolvimento de algoritmos para resolver problemas com múltiplos objetivos. 
+                        Aplicações em manutenção, logística e planejamento.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Algoritmos</span>
+                        <span class="tag">Otimização</span>
+                        <span class="tag">Matemática</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <h3>🔮 Modelagem & Simulação</h3>
+                    <p>
+                        Criação de modelos matemáticos de sistemas complexos. 
+                        Simulação computacional para previsão e análise.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">Simulação</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <h3>🛠️ Sistemas Complexos</h3>
+                    <p>
+                        Análise e design de sistemas de alta complexidade. 
+                        Engenharia de sistemas para grandes projetos.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Arquitetura</span>
+                        <span class="tag">Engenharia</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <h3>📊 Análise de Dados</h3>
+                    <p>
+                        Extração de insights de datasets grandes. 
+                        Visualização e business intelligence para decisões estratégicas.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Analytics</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <h3>🎓 Comunicação Científica</h3>
+                    <p>
+                        Divulgação de pesquisa e conhecimento técnico. 
+                        Criação de conteúdo educacional para YouTube.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Educação</span>
+                        <span class="tag">Divulgação</span>
+                        <span class="tag">Conteúdo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section class="experience" id="experiencia">
+        <div class="container">
+            <h2>Experiência Profissional</h2>
+            <div class="timeline">
+                <div class="timeline-item featured">
+                    <h3>Estágio em Engenharia e Tecnologia</h3>
+                    <div class="company">FUNDEP - Fundação de Apoio a UFMG</div>
+                    <div class="date">04/2024 - 08/2024 | Belo Horizonte, MG</div>
+                    <p>
+                        Atuação em projetos de engenharia e tecnologia. Desenvolvimento de soluções relacionadas a sistemas complexos 
+                        e otimização de processos para projetos de pesquisa e inovação.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Gestor Estratégico e Administrativo</h3>
+                    <div class="company">Autoescola Ronaldos</div>
+                    <div class="date">01/2020 - 11/2025 | São Joaquim de Bicas, MG</div>
+                    <p>
+                        Gestão estratégica, administrativa e operacional. Coordenação de equipes, planejamento de processos 
+                        e implementação de melhorias na eficiência organizacional e administrativa.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Estágio em Inteligência Comercial</h3>
+                    <div class="company">4PLAN Financial Planners</div>
+                    <div class="date">10/2021 - 02/2022 | Belo Horizonte, MG</div>
+                    <p>
+                        Análise de inteligência comercial e mercado. Coleta, análise e visualização de dados para apoio 
+                        a decisões estratégicas e planejamento comercial.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECONHECIMENTOS -->
+    <section class="awards">
+        <div class="container">
+            <h2>Reconhecimentos & Prêmios</h2>
+            <div class="awards-grid">
+                <div class="award-item">
+                    <div class="award-icon">🥈</div>
+                    <h4>Medalha de Prata</h4>
+                    <p>Oriane Magela Neto - Excelência Acadêmica UFMG 2025</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <h4>Best Paper - Honorable Mention</h4>
+                    <p>IEEE International Systems Conference 2024</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥉</div>
+                    <h4>Medalha de Bronze</h4>
+                    <p>Asia International Mathematical Olympiad (2019)</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🎯</div>
+                    <h4>PIBIC CNPq</h4>
+                    <p>Bolsa de Iniciação Científica 2023-2024</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🌍</div>
+                    <h4>Intercâmbio Internacional</h4>
+                    <p>Universidade do Porto - Mestrado (2024-2025)</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">📺</div>
+                    <h4>Fundador - Quadrumanos</h4>
+                    <p>Canal YouTube sobre Engenharia de Sistemas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IDIOMAS -->
+    <section class="languages">
+        <div class="container">
+            <h2>Idiomas</h2>
+            <div class="languages-grid">
+                <div class="language-card">
+                    <h3>🇧🇷 Português</h3>
+                    <div class="language-level">Nativo</div>
+                    <p>Língua materna</p>
+                </div>
+                <div class="language-card">
+                    <h3>🇬🇧 Inglês</h3>
+                    <div class="language-level">B1 Intermediário</div>
+                    <p>DUOLINGO ENGLISH TEST (2023)</p>
+                </div>
+                <div class="language-card">
+                    <h3>🇪🇸 Espanhol</h3>
+                    <div class="language-level">Intermediário-Avançado</div>
+                    <p>Conversação e escrita fluentes</p>
+                </div>
+                <div class="language-card">
+                    <h3>🇫🇷 Francês</h3>
+                    <div class="language-level">A1-A2 Básico</div>
+                    <p>Curso FRANMOBE iUFMG</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Gabriel Mendes</h4>
+                    <p>Engenheiro de Sistemas especializado em otimização, indústria 4.0 e pesquisa acadêmica.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/gabriel-mendes-fortunato-a270011b9/" target="_blank" title="LinkedIn">in</a>
+                        <a href="mailto:gabrielmendes2503@gmail.com" title="Email">✉️</a>
+                        <a href="https://www.youtube.com/@quadrumanos" target="_blank" title="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#pesquisa">Pesquisa</a>
+                    <a href="#experiencia">Experiência</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="mailto:gabrielmendes2503@gmail.com">gabrielmendes2503@gmail.com</a>
+                    <a href="tel:+5531999225929">+55 (31) 99922-5929</a>
+                    <p style="margin-top: 1rem; font-size: 0.85rem;">Belo Horizonte, MG - Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gabriel Mendes Fortunato. Engenheiro de Sistemas - UFMG</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
